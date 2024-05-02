@@ -163,7 +163,7 @@ int connection(int internet_socket, fd_set *master, int *fdmax) {
             *fdmax = client_socket;
         }
         printf("new connection from %s on socket %d\n", client_ip, client_socket);
-        send(client_socket, "Guess a number between 1 and 1000000.", 41, 0);
+        send(client_socket, "Guess a number between 1 and 1000000.", 64, 0);
     }
 
     return client_socket;
@@ -216,7 +216,7 @@ void execution(int client_socket, fd_set *master, int *fdmax, uint32_t *random_n
             //Update the random number for the remaining clients
             for (int i = 0; i <= *fdmax; i++) {
                 if (FD_ISSET(i, master) && i!= client_socket) {
-                    send(i, "New game started! Guess a number between 1 and 1000000.", 50, 0);
+                    send(i, "New game started! Guess a number between 1 and 1000000.", 64, 0);
                 }
             }
         }
